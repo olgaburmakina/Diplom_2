@@ -19,7 +19,7 @@ public class ChangeDataTest {
     private String accessToken = "zeroToken";
 
     @After
-    public void deleteUser(){
+    public void deleteUser() {
         if (!accessToken.equals("zeroToken")) {
             ValidatableResponse deleteResponse = client.deleteUser(accessToken);
             checks.userDeleted(deleteResponse);
@@ -30,7 +30,7 @@ public class ChangeDataTest {
     @DisplayName("Change email")
     @Description("Изменение данных пользователя с авторизацией")
 
-    public void changeEmail(){
+    public void changeEmail() {
         User user = generator.random();
         ValidatableResponse response = client.createUser(user);
         accessToken = checks.successfullyResponse(response);
@@ -43,7 +43,7 @@ public class ChangeDataTest {
     @DisplayName("Change name")
     @Description("Изменение данных пользователя с авторизацией")
 
-    public void changeName(){
+    public void changeName() {
         User user = generator.random();
         ValidatableResponse response = client.createUser(user);
         accessToken = checks.successfullyResponse(response);
@@ -56,7 +56,7 @@ public class ChangeDataTest {
     @DisplayName("Change password")
     @Description("Изменение данных пользователя с авторизацией")
 
-    public void changePassword(){
+    public void changePassword() {
         User user = generator.random();
         ValidatableResponse response = client.createUser(user);
         accessToken = checks.successfullyResponse(response);
@@ -69,7 +69,7 @@ public class ChangeDataTest {
     @DisplayName("Change email without authorization")
     @Description("Изменение данных пользователя без авторизации")
 
-    public void changeEmailWithoutAuthorization(){
+    public void changeEmailWithoutAuthorization() {
         User user = generator.random();
         user.setEmail(faker.internet().emailAddress());
         String wrongAccessToken = (faker.random().hex(20));
@@ -82,7 +82,7 @@ public class ChangeDataTest {
     @DisplayName("Change name without authorization")
     @Description("Изменение данных пользователя без авторизации")
 
-    public void changeNameWithoutAuthorization(){
+    public void changeNameWithoutAuthorization() {
         User user = generator.random();
         user.setName(faker.name().firstName());
         String wrongAccessToken = (faker.random().hex(20));
@@ -94,7 +94,7 @@ public class ChangeDataTest {
     @DisplayName("Change password without authorization")
     @Description("Изменение данных пользователя без авторизации")
 
-    public void changePasswordWithoutAuthorization(){
+    public void changePasswordWithoutAuthorization() {
         User user = generator.random();
         user.setPassword(faker.internet().password(6, 10));
         String wrongAccessToken = (faker.random().hex(20));

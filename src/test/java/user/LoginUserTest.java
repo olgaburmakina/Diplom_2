@@ -18,7 +18,7 @@ public class LoginUserTest {
     @DisplayName("Login User")
     @Description("Логин под существующим пользователем")
 
-    public void loginUser(){
+    public void loginUser() {
         User user = generator.userLoginData();
         ValidatableResponse response = client.loginUser(user);
         checks.successfullyResponse(response);
@@ -28,7 +28,7 @@ public class LoginUserTest {
     @DisplayName("Wrong email when logging in")
     @Description("Логин с неверным email")
 
-    public void wrongEmailLoginUser(){
+    public void wrongEmailLoginUser() {
         User user = generator.userLoginData();
         user.setEmail("ol.guseva@yandex.ru");
         ValidatableResponse response = client.loginUser(user);
@@ -39,7 +39,7 @@ public class LoginUserTest {
     @DisplayName("Wrong password when logging in")
     @Description("Логин с неверным паролем")
 
-    public void wrongPasswordLoginUser(){
+    public void wrongPasswordLoginUser() {
         User user = generator.userLoginData();
         user.setPassword("efirav6530");
         ValidatableResponse response = client.loginUser(user);

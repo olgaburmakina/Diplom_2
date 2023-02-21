@@ -25,7 +25,7 @@ public class ReceivingUserOrdersTest {
     @DisplayName("Receiving orders from an authorized user")
     @Description("Получение заказов конкретного пользователя: авторизованный пользователь")
 
-    public void receivingAuthorizedUserOrdersTest(){
+    public void receivingAuthorizedUserOrdersTest() {
         User user = generator.userLoginData();
         ValidatableResponse userCreateResponse = client.loginUser(user);
         String accessToken = checks.successfullyResponse(userCreateResponse);
@@ -37,7 +37,7 @@ public class ReceivingUserOrdersTest {
     @DisplayName("Receiving orders from an unauthorized user")
     @Description("Получение заказов конкретного пользователя: неавторизованный пользователь")
 
-    public void receivingOrdersFromAnUnauthorizedUserTest(){
+    public void receivingOrdersFromAnUnauthorizedUserTest() {
         String wrongAccessToken = (faker.random().hex(20));
         ValidatableResponse response = orderClient.receivingUserOrders(wrongAccessToken);
         checks.needForAuthorization(response);

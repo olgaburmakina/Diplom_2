@@ -23,7 +23,7 @@ public class CreateOrderTest {
     private final UserGenerator generator = new UserGenerator();
     private final UserClient client = new UserClient();
     private final UserChecks checks = new UserChecks();
-    private final Order order = new Order(new ArrayList<>(Arrays.asList("61c0c5a71d1f82001bdaaa6d","61c0c5a71d1f82001bdaaa76","61c0c5a71d1f82001bdaaa6e")));
+    private final Order order = new Order(new ArrayList<>(Arrays.asList("61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa76", "61c0c5a71d1f82001bdaaa6e")));
     private String accessToken;
 
     private final Faker faker = new Faker();
@@ -32,7 +32,7 @@ public class CreateOrderTest {
     @DisplayName("Create an order with authorization with ingredients")
     @Description("Создание заказа с авторизацией с ингредиентами")
 
-    public void createOrderWithAuthorizationWithIngredients(){
+    public void createOrderWithAuthorizationWithIngredients() {
         User user = generator.userLoginData();
         ValidatableResponse response = client.loginUser(user);
         accessToken = checks.successfullyResponse(response);
@@ -44,10 +44,11 @@ public class CreateOrderTest {
     @DisplayName("Create an order with authorization without ingredients")
     @Description("Создание заказа с авторизацией без ингредиентов")
 
-    public void createOrderWithAuthorizationWithoutIngredients(){
+    public void createOrderWithAuthorizationWithoutIngredients() {
         User user = generator.userLoginData();
         ValidatableResponse response = client.loginUser(user);
-        accessToken = checks.successfullyResponse(response);checks.successfullyResponse(response);
+        accessToken = checks.successfullyResponse(response);
+        checks.successfullyResponse(response);
         order.setIngredients(null);
         ValidatableResponse createResponse = orderClient.createOrder(accessToken, order);
         orderChecks.ingredientMustBeProvided(createResponse);
@@ -57,7 +58,7 @@ public class CreateOrderTest {
     @DisplayName("Creating an order without authorization with ingredients")
     @Description("Создание заказа без авторизации c ингредиентами")
 
-    public void createOrderWithoutAuthorizationWithIngredients(){
+    public void createOrderWithoutAuthorizationWithIngredients() {
         String wrongAccessToken = (faker.random().hex(20));
         ValidatableResponse createResponse = orderClient.createOrder(wrongAccessToken, order);
         checks.successfullyResponse(createResponse);//почему-то заказ проходит
@@ -67,7 +68,7 @@ public class CreateOrderTest {
     @DisplayName("Creating an order without authorization without ingredients")
     @Description("Создание заказа без авторизации без ингредиентов")
 
-    public void createOrderWithoutAuthorizationWithoutIngredients(){
+    public void createOrderWithoutAuthorizationWithoutIngredients() {
         String wrongAccessToken = (faker.random().hex(20));
         order.setIngredients(null);
         ValidatableResponse createResponse = orderClient.createOrder(wrongAccessToken, order);
@@ -78,7 +79,7 @@ public class CreateOrderTest {
     @DisplayName("Creating an order with an invalid ingredient hash")
     @Description("Создание заказа с неверным хешем ингредиентов.")
 
-    public void createOrderWithInvalidHash(){
+    public void createOrderWithInvalidHash() {
         User user = generator.userLoginData();
         ValidatableResponse response = client.loginUser(user);
         accessToken = checks.successfullyResponse(response);

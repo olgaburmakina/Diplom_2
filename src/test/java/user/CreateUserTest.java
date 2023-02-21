@@ -17,7 +17,7 @@ public class CreateUserTest {
     private String accessToken = "zeroToken";
 
     @After
-    public void deleteUser(){
+    public void deleteUser() {
         if (!accessToken.equals("zeroToken")) {
             ValidatableResponse deleteResponse = client.deleteUser(accessToken);
             checks.userDeleted(deleteResponse);
@@ -28,7 +28,7 @@ public class CreateUserTest {
     @DisplayName("Verification of user creation")
     @Description("Проверим, что можно создать уникального пользователя")
 
-    public void createUser(){
+    public void createUser() {
         User user = generator.random();
         ValidatableResponse createResponse = client.createUser(user);
         accessToken = checks.successfullyResponse(createResponse);
@@ -39,7 +39,7 @@ public class CreateUserTest {
     @DisplayName("Create user twice")
     @Description("Проверим, что нельзя создать пользователя, который уже зарегистрирован")
 
-    public void createUserTwice(){
+    public void createUserTwice() {
         User user = generator.random();
         client.createUser(user);
         ValidatableResponse loginResponse = client.createUser(user);

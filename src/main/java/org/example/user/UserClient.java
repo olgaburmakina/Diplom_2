@@ -3,11 +3,11 @@ package org.example.user;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 
-public class UserClient extends org.example.Client{
+public class UserClient extends org.example.Client {
     public static final String ROOT = "/api/auth/";
 
     @Step("Create user")
-    public ValidatableResponse createUser(User user){
+    public ValidatableResponse createUser(User user) {
         return spec()
                 .body(user)
                 .when()
@@ -25,7 +25,7 @@ public class UserClient extends org.example.Client{
     }
 
     @Step("Change data user")
-    public ValidatableResponse changeDataUser(User user, String accessToken){
+    public ValidatableResponse changeDataUser(User user, String accessToken) {
         return spec()
                 .header("Authorization", accessToken)
                 .body(user)
@@ -35,7 +35,7 @@ public class UserClient extends org.example.Client{
     }
 
     @Step("Delete user")
-    public ValidatableResponse deleteUser(String accessToken){
+    public ValidatableResponse deleteUser(String accessToken) {
         return spec()
                 .header("Authorization", accessToken)
                 .when()
